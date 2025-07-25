@@ -1,6 +1,8 @@
 package com.ecommerce.sb_ecom_project.service;
 import com.ecommerce.sb_ecom_project.model.Category;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
@@ -27,10 +29,10 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public String deleteCategory(String categoryId) {
-        Category category = categories.stream().filter(c->c.getCategoryId().equals(categoryId)).findFirst().orElse(null);
-        if(category==null){
-            return "Category does not exist";
-        }
+        Category category = categories.stream()
+                .filter(c->c.getCategoryId().equals(categoryId))
+                .findFirst()
+                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Resource not found"));
         categories.remove(category);
         return "Category with categoryID "+categoryId+"deleted successfully";
     }
