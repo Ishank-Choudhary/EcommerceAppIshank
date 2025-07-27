@@ -1,5 +1,6 @@
 package com.ecommerce.sb_ecom_project.controller;
 
+import com.ecommerce.sb_ecom_project.exception.CategoryNotFoundException;
 import com.ecommerce.sb_ecom_project.model.Category;
 import com.ecommerce.sb_ecom_project.service.CategoryService;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,9 @@ public class CategoryController {
 
     @PostMapping("/api/public/categories")
     public String createCategory(@RequestBody Category category){
+        if (category.getCategoryName() == null || category.getCategoryName().trim().isEmpty()) {
+            throw new CategoryNotFoundException("Please enter a Category name, it is a mandatory field");
+        }
         categoryService.createCategory(category);
         return "Category added successfully";
     }
