@@ -32,8 +32,23 @@ public class CategoryServiceImpl implements CategoryService{
         Category category = categories.stream()
                 .filter(c->c.getCategoryId().equals(categoryId))
                 .findFirst()
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Resource Not found"));
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"CategyID Not found"));
         categories.remove(category);
         return "Category with categoryID "+categoryId + "deleted successfully";
     }
+
+    @Override
+    public String updateCategory(Category category, String categoryId) {
+        Category existingCategory = categories.stream()
+                .filter(c->c.getCategoryId().equals(categoryId))
+                .findFirst()
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"CategyID Not found"));
+        // Example update logic
+        existingCategory.setCategoryName(category.getCategoryName());
+        existingCategory.setCategoryDescription(category.getCategoryDescription());
+        return "Category with categoryID ="+ categoryId + " updated successfully";
+    }
+
+
+
 }
