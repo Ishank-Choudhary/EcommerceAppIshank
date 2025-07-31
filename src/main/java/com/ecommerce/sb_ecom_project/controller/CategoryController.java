@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class CategoryController {
 
     //Interface
@@ -22,12 +23,14 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/api/public/categories")
+    //@GetMapping("/api/public/categories")
+    @RequestMapping(value="/public/categories",method = RequestMethod.GET)
     public List<Category> getAllCategories(){
         return categoryService.getAllCategories();
     }
 
-    @PostMapping("/api/public/categories")
+    //@PostMapping("/api/public/categories")
+    @RequestMapping(value="/public/categories",method = RequestMethod.POST)
     public String createCategory(@RequestBody Category category){
         if (category.getCategoryName() == null || category.getCategoryName().trim().isEmpty()) {
             throw new CategoryNotFoundException("Please enter a Category name, it is a mandatory field");
@@ -36,7 +39,8 @@ public class CategoryController {
         return "Category added successfully";
     }
 
-    @DeleteMapping("/api/admin/categories/{categoryId}")
+    //@DeleteMapping("/api/admin/categories/{categoryId}")
+    @RequestMapping(value="/admin/categories/{categoryId}",method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteCategory(@PathVariable String categoryId){
         try {
             String status = categoryService.deleteCategory(categoryId);
