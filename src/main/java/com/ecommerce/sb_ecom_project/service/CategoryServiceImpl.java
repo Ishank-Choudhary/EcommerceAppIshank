@@ -49,6 +49,4 @@ public class CategoryServiceImpl implements CategoryService{
         return "Category with categoryID ="+ categoryId + " updated successfully";
     }
 
-
-
 }
