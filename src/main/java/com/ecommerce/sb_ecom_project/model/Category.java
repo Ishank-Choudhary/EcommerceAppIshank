@@ -18,7 +18,7 @@ import lombok.*;
 public class Category {
     // Getters and Setters
     @Id                         // the JPA annotation to mark a primary key field in an entity class.
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //The database itself generates the ID (usually using auto-increment in SQL)
     private int categoryId; //primary key
     @NotBlank(message = "Name cannot be empty")
     @Size(min=4,max=15,message = "Name must be in the range of 4 to 15 characters")
