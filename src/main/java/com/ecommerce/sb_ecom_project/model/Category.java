@@ -26,5 +26,5 @@ public class Category {
     private String categoryDescription;
     @AssertTrue(message = "Please mark the field as active")
     @JsonProperty("isActive")
-    private boolean isActive;
+    private boolean markActive;
 }
