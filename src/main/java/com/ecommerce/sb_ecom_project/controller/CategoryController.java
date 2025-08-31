@@ -1,6 +1,6 @@
 package com.ecommerce.sb_ecom_project.controller;
 
-import com.ecommerce.sb_ecom_project.model.Category;
+import com.ecommerce.sb_ecom_project.payload.CategoryDTO;
 import com.ecommerce.sb_ecom_project.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -20,15 +20,16 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+
     @GetMapping("/api/public/categories")
-    public List<Category> getAllCategories() {
+    public List<CategoryDTO> getAllCategories() {
         return categoryService.getAllCategories();
     }
 
     @PostMapping("/api/public/categories")
-    public String createCategory(@Valid @RequestBody Category category) {
-        categoryService.createCategory(category);
-        return "Category added successfully";
+    public ResponseEntity<String> createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
+        categoryService.createCategory(categoryDTO);
+        return ResponseEntity.ok("Category created successfully");
     }
 
     @DeleteMapping("/api/admin/categories/{categoryId}")
@@ -42,11 +43,11 @@ public class CategoryController {
     }
 
     @PutMapping("/api/admin/updateCategories/{categoryId}")
-    public ResponseEntity<Category> updateCategory(
-            @RequestBody Category category,
+    public ResponseEntity<CategoryDTO> updateCategory(
+            @RequestBody CategoryDTO categoryDTO,
             @PathVariable int categoryId) {
         try {
-            Category updatedCategory = categoryService.updateCategory(category, categoryId);
+            CategoryDTO updatedCategory = categoryService.updateCategory(categoryDTO, categoryId);
             return new ResponseEntity<>(updatedCategory, HttpStatus.OK);
         } catch (ResponseStatusException e) {
             return new ResponseEntity<>(null, e.getStatusCode());
