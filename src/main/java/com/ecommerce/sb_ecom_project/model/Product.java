@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) // auto generated id values
-    private long productId; //primary key
+    private Integer productId; //primary key
     private String productName;
     private String description;
     private double price;

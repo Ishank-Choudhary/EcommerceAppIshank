@@ -27,7 +27,15 @@ public class Category {
     @JsonProperty("isActive")
     private boolean markActive;
 
-    // Now we can fetch the product from the catefory as well.
+    // Now we can fetch the product from the category as well.
     @OneToMany(mappedBy = "category",cascade=CascadeType.ALL)
     private List<Product> products;
+
+    //custom constructor for CategoryDataLoader class
+    public Category(String categoryName, String categoryDescription, boolean markActive) {
+        this.categoryName = categoryName;
+        this.categoryDescription = categoryDescription;
+        this.markActive = markActive;
+    }
+
 }

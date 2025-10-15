@@ -42,7 +42,7 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCategory);
     }
 
-    @DeleteMapping("admin/categories/{categoryId}")
+    @DeleteMapping("/admin/deleteCategory/{categoryId}")
     public ResponseEntity<String> deleteCategory(@PathVariable int categoryId) {
         try {
             String status = categoryService.deleteCategory(categoryId);
@@ -52,7 +52,7 @@ public class CategoryController {
         }
     }
 
-    @PutMapping("admin/updateCategories/{categoryId}")
+    @PutMapping("/admin/updateCategory/{categoryId}")
     public ResponseEntity<CategoryDTO> updateCategory(
             @RequestBody CategoryDTO categoryDTO,
             @PathVariable int categoryId) {

@@ -34,6 +34,7 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryResponse getAllCategories(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder) {
 
         // 1️⃣ Determine sorting direction based on input (ascending or descending)
+        // Sort is a helper class provided by spring data jpa to define the sorting criteria when you fetch data
         Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc")
                 ? Sort.by(sortBy).ascending()
                 : Sort.by(sortBy).descending();
@@ -117,7 +118,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDTO updateCategory(CategoryDTO categoryDTO, int categoryId) {
-        // 1. Find the existing category from DB
+        // 1. Find the existing category from DB (here we are using the Category object because repository does not know the DTO class it only knows entity class)
         Category existingCategory = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new ResourceNotFoundException("Category","categoryID",categoryId));
 
