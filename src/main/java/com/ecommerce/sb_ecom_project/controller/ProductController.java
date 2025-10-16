@@ -80,4 +80,11 @@ public class ProductController {
         }
     }
 
+    @DeleteMapping("/deleteByProductId/{productId}")
+    public ResponseEntity<ProductDTO> deleteProductById(@PathVariable Integer productId){
+        ProductDTO deletedProductDTO = productService.deleteProductById(productId);
+        return new ResponseEntity<>(deletedProductDTO,HttpStatus.OK);
+
+    }
+
 }
