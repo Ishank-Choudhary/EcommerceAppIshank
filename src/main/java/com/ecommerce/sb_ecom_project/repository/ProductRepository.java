@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product,Integer> {
+public interface ProductRepository extends JpaRepository<Product,Integer> { //using Integer for primary key productID
     Page<Product> findByCategory(Category category, Pageable pageable);
     Page<Product> findByProductNameContainingIgnoreCase(String keyword, Pageable pageable);
     /*

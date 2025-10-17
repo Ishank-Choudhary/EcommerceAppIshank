@@ -4,6 +4,7 @@ import com.ecommerce.sb_ecom_project.exception.APIException;
 import com.ecommerce.sb_ecom_project.exception.ResourceNotFoundException;
 import com.ecommerce.sb_ecom_project.model.Category;
 import com.ecommerce.sb_ecom_project.model.Product;
+import com.ecommerce.sb_ecom_project.payload.CategoryDTO;
 import com.ecommerce.sb_ecom_project.payload.ProductDTO;
 import com.ecommerce.sb_ecom_project.payload.ProductResponse;
 import com.ecommerce.sb_ecom_project.repository.CategoryRepository;
@@ -192,5 +193,13 @@ public class ProductServiceImpl implements ProductService{
                 .orElseThrow(()-> new ResourceNotFoundException("Product","productId",productId));
         productRepository.delete(existing);
         return modelMapper.map(existing,ProductDTO.class);
+    }
+
+    @Override
+    public ProductDTO updateProductImageByProductId(ProductDTO productDTO,Integer productId) {
+        Product existing = productRepository.findById(productId)
+                .orElseThrow(() -> new ResourceNotFoundException("Product", "productId", productId));
+        existing.setImageURL(productDTO.getImageURL());
+        existing.setCategory(modelMapper.map(productDTO.getCategory(), Category.class));
     }
 }
