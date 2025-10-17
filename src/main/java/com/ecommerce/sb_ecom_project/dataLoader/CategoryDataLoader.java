@@ -1,4 +1,4 @@
-package com.ecommerce.sb_ecom_project.loader;
+package com.ecommerce.sb_ecom_project.dataLoader;
 
 import com.ecommerce.sb_ecom_project.model.Category;
 import com.ecommerce.sb_ecom_project.repository.CategoryRepository;

@@ -18,6 +18,7 @@ public class Product {
     private String description;
     private double price;
     private double specialPrice;
+    private String imageURL;
 
     @ManyToOne // many products can belong to one category
     @JoinColumn(name = "category_id") // creates a foreign key 'category_id' in the 'product' table
