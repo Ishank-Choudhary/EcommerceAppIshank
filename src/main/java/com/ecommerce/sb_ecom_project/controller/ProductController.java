@@ -91,7 +91,7 @@ public class ProductController {
             @RequestBody ProductDTO productDTO,
             @PathVariable Integer productId){
         try{
-            ProductDTO updatedProductImage = productService.updateProductImageByProductId(productId);
+            ProductDTO updatedProductImage = productService.updateProductImageByProductId(productDTO,productId);
             return new ResponseEntity<>(updatedProductImage, HttpStatus.OK);
         }catch(ResponseStatusException e){
             return new ResponseEntity<>(null,e.getStatusCode());

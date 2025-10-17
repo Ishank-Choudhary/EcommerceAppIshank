@@ -200,6 +200,7 @@ public class ProductServiceImpl implements ProductService{
         Product existing = productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "productId", productId));
         existing.setImageURL(productDTO.getImageURL());
-        existing.setCategory(modelMapper.map(productDTO.getCategory(), Category.class));
+        Product updated = productRepository.save(existing);
+        return modelMapper.map(updated,ProductDTO.class);
     }
 }
