@@ -84,6 +84,18 @@ public class ProductController {
     public ResponseEntity<ProductDTO> deleteProductById(@PathVariable Integer productId){
         ProductDTO deletedProductDTO = productService.deleteProductById(productId);
         return new ResponseEntity<>(deletedProductDTO,HttpStatus.OK);
+    }
+
+    @PutMapping("/updateImage/{productId}")
+    public ResponseEntity<ProductDTO> updateProductImageByProductId(@Valid
+            @RequestBody ProductDTO productDTO, // because we want to know which product is updated
+            @PathVariable Integer productId){
+        try{
+            ProductDTO updatedProductImage = productService.updateProductImageByProductId(productDTO,productId);
+            return new ResponseEntity<>(updatedProductImage, HttpStatus.OK);
+        }catch(ResponseStatusException e){
+            return new ResponseEntity<>(null,e.getStatusCode());
+        }
 
     }
 

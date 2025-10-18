@@ -1,13 +1,16 @@
 package com.ecommerce.sb_ecom_project.service;
 
 import com.ecommerce.sb_ecom_project.exception.APIException;
+import com.ecommerce.sb_ecom_project.exception.ProductAlreadyExistsException;
 import com.ecommerce.sb_ecom_project.exception.ResourceNotFoundException;
 import com.ecommerce.sb_ecom_project.model.Category;
 import com.ecommerce.sb_ecom_project.model.Product;
+import com.ecommerce.sb_ecom_project.payload.CategoryDTO;
 import com.ecommerce.sb_ecom_project.payload.ProductDTO;
 import com.ecommerce.sb_ecom_project.payload.ProductResponse;
 import com.ecommerce.sb_ecom_project.repository.CategoryRepository;
 import com.ecommerce.sb_ecom_project.repository.ProductRepository;
+import org.apache.coyote.Response;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,10 +18,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -40,6 +45,12 @@ public class ProductServiceImpl implements ProductService{
                         HttpStatus.NOT_FOUND,
                         "Category not found with id: " + categoryId
                 ));
+        Optional<Product> existingProduct = productRepository.findByProductNameAndCategory(productDTO.getProductName(),category);
+        if(existingProduct.isPresent()){
+            throw new ProductAlreadyExistsException(
+                    "Product with name '" + productDTO.getProductName() + "' already exists"
+            );
+        }
         //Mapping productDTO into the product Entity class
         // You map it into your Entity class so that it can be persisted to DB.
         Product product = modelMapper.map(productDTO,Product.class);
@@ -192,5 +203,14 @@ public class ProductServiceImpl implements ProductService{
                 .orElseThrow(()-> new ResourceNotFoundException("Product","productId",productId));
         productRepository.delete(existing);
         return modelMapper.map(existing,ProductDTO.class);
+    }
+
+    @Override
+    public ProductDTO updateProductImageByProductId(ProductDTO productDTO,Integer productId) {
+        Product existing = productRepository.findById(productId)
+                .orElseThrow(() -> new ResourceNotFoundException("Product", "productId", productId));
+        existing.setImageURL(productDTO.getImageURL()); //using productDTO we are getting the imageURL that we are sending in the json format and then we are updating that in the existing repository
+        Product updated = productRepository.save(existing);
+        return modelMapper.map(updated,ProductDTO.class);
     }
 }

@@ -7,8 +7,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
-public interface ProductRepository extends JpaRepository<Product,Integer> {
+public interface ProductRepository extends JpaRepository<Product,Integer> { //using Integer for primary key productID
     Page<Product> findByCategory(Category category, Pageable pageable);
     Page<Product> findByProductNameContainingIgnoreCase(String keyword, Pageable pageable);
     /*
@@ -22,4 +24,5 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
  │ Pageable parameter          │ Adds pagination + sorting      │ LIMIT, OFFSET, ORDER BY        │
  └────────────────────────────┴───────────────────────────────┴───────────────────────────────┘
 */
+    Optional<Product> findByProductNameAndCategory(String productName, Category category);
 }

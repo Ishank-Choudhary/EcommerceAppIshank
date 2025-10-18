@@ -1,4 +1,4 @@
-package com.ecommerce.sb_ecom_project.loader;
+package com.ecommerce.sb_ecom_project.dataLoader;
 
 import com.ecommerce.sb_ecom_project.model.Category;
 import com.ecommerce.sb_ecom_project.model.Product;
@@ -42,6 +42,7 @@ public class ProductDataLoader implements CommandLineRunner {
                 laptop.setDescription("High performance laptop");
                 laptop.setPrice(70000);
                 laptop.setSpecialPrice(65000);
+                laptop.setImageURL("/images/laptop.jpg");
                 laptop.setCategory(electronics);
 
                 Product smartphone = new Product();
@@ -49,6 +50,7 @@ public class ProductDataLoader implements CommandLineRunner {
                 smartphone.setDescription("Latest Android smartphone");
                 smartphone.setPrice(30000);
                 smartphone.setSpecialPrice(28000);
+                smartphone.setImageURL("/images/phone.jpg");
                 smartphone.setCategory(electronics);
 
                 Product novel = new Product();
@@ -56,6 +58,7 @@ public class ProductDataLoader implements CommandLineRunner {
                 novel.setDescription("Thrilling mystery book");
                 novel.setPrice(500);
                 novel.setSpecialPrice(450);
+                novel.setImageURL("/images/novel.jpg");
                 novel.setCategory(books);
 
                 Product tshirt = new Product();
@@ -63,6 +66,7 @@ public class ProductDataLoader implements CommandLineRunner {
                 tshirt.setDescription("100% cotton T-shirt");
                 tshirt.setPrice(800);
                 tshirt.setSpecialPrice(700);
+                tshirt.setImageURL("/images/tshirt.jpg");
                 tshirt.setCategory(fashion);
 
                 productRepository.saveAll(List.of(laptop, smartphone, novel, tshirt));
