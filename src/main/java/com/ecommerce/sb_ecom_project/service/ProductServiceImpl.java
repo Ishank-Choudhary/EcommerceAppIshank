@@ -199,7 +199,7 @@ public class ProductServiceImpl implements ProductService{
     public ProductDTO updateProductImageByProductId(ProductDTO productDTO,Integer productId) {
         Product existing = productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "productId", productId));
-        existing.setImageURL(productDTO.getImageURL());
+        existing.setImageURL(productDTO.getImageURL()); //using productDTO we are getting the imageURL that we are sending in the json format and then we are updating that in the existing repository
         Product updated = productRepository.save(existing);
         return modelMapper.map(updated,ProductDTO.class);
     }

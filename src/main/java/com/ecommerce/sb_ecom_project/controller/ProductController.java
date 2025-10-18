@@ -88,7 +88,7 @@ public class ProductController {
 
     @PutMapping("/updateImage/{productId}")
     public ResponseEntity<ProductDTO> updateProductImageByProductId(
-            @RequestBody ProductDTO productDTO,
+            @RequestBody ProductDTO productDTO, // because we want to know which product is updated
             @PathVariable Integer productId){
         try{
             ProductDTO updatedProductImage = productService.updateProductImageByProductId(productDTO,productId);
