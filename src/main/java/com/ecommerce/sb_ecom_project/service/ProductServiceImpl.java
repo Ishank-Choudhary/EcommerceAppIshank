@@ -21,6 +21,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+//for logging
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,21 +36,27 @@ public class ProductServiceImpl implements ProductService{
     private ProductRepository productRepository;
     @Autowired
     private CategoryRepository categoryRepository;
-
     @Autowired
     private ModelMapper modelMapper;
+
+    //logger object
+    private static final Logger logger  = LoggerFactory.getLogger(ProductService.class);
 
 
     @Override
     public ProductDTO addProduct(ProductDTO productDTO, Integer categoryId) {
+        logger.info("Request received to add a user {} with categoryId{}",productDTO.getProductName(),categoryId);
         //Find the category where we want to insert the product, we have to be sure that category with that categoryId exists
+        // 1️⃣ Validate category
         Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,
-                        "Category not found with id: " + categoryId
-                ));
+                .orElseThrow(() -> {
+                    logger.error("❌ Category not found with id: {}", categoryId);
+                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found with id: " + categoryId);
+                });
+
         Optional<Product> existingProduct = productRepository.findByProductNameAndCategory(productDTO.getProductName(),category);
         if(existingProduct.isPresent()){
+            logger.warn("Product with {} already exists",productDTO.getProductName());
             throw new ProductAlreadyExistsException(
                     "Product with name '" + productDTO.getProductName() + "' already exists"
             );
@@ -61,7 +71,7 @@ public class ProductServiceImpl implements ProductService{
         //save product  to repository
         //Now the product is persisted in DB with the correct foreign key (category_id).
         Product savedProduct = productRepository.save(product);
-
+        logger.info("Product {} with {} is successfully saved",savedProduct.getProductName(),savedProduct.getProductId());
         //convert Entity -> DTO to return to the client
         return modelMapper.map(savedProduct,ProductDTO.class);
     }
