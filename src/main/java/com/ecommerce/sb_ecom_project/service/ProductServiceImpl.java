@@ -54,7 +54,7 @@ public class ProductServiceImpl implements ProductService{
                     return new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found with id: " + categoryId);
                 });
 
-        Optional<Product> existingProduct = productRepository.findByProductNameAndCategory(productDTO.getProductName(),category);
+        Optional<Product> existingProduct = productRepository.findByProductNameAndCategory(productDTO.getProductName(),category); //improve, dont need to use the productname, use product id
         if(existingProduct.isPresent()){
             logger.warn("Product with {} already exists",productDTO.getProductName());
             throw new ProductAlreadyExistsException(

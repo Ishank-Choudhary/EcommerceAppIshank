@@ -107,7 +107,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public String deleteCategory(int categoryId) {
-        List<Category> categories = categoryRepository.findAll();
+        List<Category> categories = categoryRepository.findAll(); // we can delete using the category id only instead of findALl() we can find that ategory id only
         Category category = categories.stream()
                 .filter(c -> c.getCategoryId() == categoryId)
                 .findFirst()

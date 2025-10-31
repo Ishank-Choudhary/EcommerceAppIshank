@@ -28,4 +28,5 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleProductExists(ProductAlreadyExistsException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
+
 }
