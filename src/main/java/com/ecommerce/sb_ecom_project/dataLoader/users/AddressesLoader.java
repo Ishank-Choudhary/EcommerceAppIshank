@@ -1,4 +1,4 @@
 package com.ecommerce.sb_ecom_project.dataLoader.users;
 
-public class usersLoader {
+public class AddressesLoader {
 }
