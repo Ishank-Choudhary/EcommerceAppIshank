@@ -1,5 +1,6 @@
-package com.ecommerce.sb_ecom_project.payload;
+package com.ecommerce.sb_ecom_project.model.product.payload.dto;
 
+import com.ecommerce.sb_ecom_project.model.category.payload.dto.CategoryDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

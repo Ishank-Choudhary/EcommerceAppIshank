@@ -1,8 +1,7 @@
-package com.ecommerce.sb_ecom_project.service;
+package com.ecommerce.sb_ecom_project.service.product.service;
 
-import com.ecommerce.sb_ecom_project.payload.ProductDTO;
-import com.ecommerce.sb_ecom_project.payload.ProductResponse;
-import com.ecommerce.sb_ecom_project.model.Product;
+import com.ecommerce.sb_ecom_project.model.product.payload.dto.ProductDTO;
+import com.ecommerce.sb_ecom_project.model.product.payload.response.ProductResponse;
 
 public interface ProductService {
     ProductDTO addProduct(ProductDTO productDTO, Integer categoryId);

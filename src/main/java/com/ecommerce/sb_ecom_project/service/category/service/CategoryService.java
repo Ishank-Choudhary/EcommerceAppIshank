@@ -1,10 +1,7 @@
-package com.ecommerce.sb_ecom_project.service;
+package com.ecommerce.sb_ecom_project.service.category.service;
 
-import com.ecommerce.sb_ecom_project.model.Category;
-import com.ecommerce.sb_ecom_project.payload.CategoryDTO;
-import com.ecommerce.sb_ecom_project.payload.CategoryResponse;
-
-import java.util.List;
+import com.ecommerce.sb_ecom_project.model.category.payload.dto.CategoryDTO;
+import com.ecommerce.sb_ecom_project.model.category.payload.response.CategoryResponse;
 
 public interface CategoryService {
     CategoryResponse getAllCategories(Integer pageNumber, Integer pageSize,String sortBy,String sortOrder);

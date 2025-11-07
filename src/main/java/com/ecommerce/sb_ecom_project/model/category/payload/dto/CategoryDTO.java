@@ -1,7 +1,6 @@
-package com.ecommerce.sb_ecom_project.payload;
+package com.ecommerce.sb_ecom_project.model.category.payload.dto;
 
 
-import jakarta.validation.constraints.AssertTrue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

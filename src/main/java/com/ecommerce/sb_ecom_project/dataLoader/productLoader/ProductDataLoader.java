@@ -1,9 +1,9 @@
-package com.ecommerce.sb_ecom_project.dataLoader;
+package com.ecommerce.sb_ecom_project.dataLoader.productLoader;
 
-import com.ecommerce.sb_ecom_project.model.Category;
-import com.ecommerce.sb_ecom_project.model.Product;
-import com.ecommerce.sb_ecom_project.repository.CategoryRepository;
-import com.ecommerce.sb_ecom_project.repository.ProductRepository;
+import com.ecommerce.sb_ecom_project.model.category.entity.Category;
+import com.ecommerce.sb_ecom_project.model.product.entity.Product;
+import com.ecommerce.sb_ecom_project.repository.categoryRepository.CategoryRepository;
+import com.ecommerce.sb_ecom_project.repository.productRepository.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
