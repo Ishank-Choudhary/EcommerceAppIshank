@@ -1,17 +1,19 @@
-package com.ecommerce.sb_ecom_project.model;
+package com.ecommerce.sb_ecom_project.model.product.entity;
 
+import com.ecommerce.sb_ecom_project.model.category.entity.Category;
+import com.ecommerce.sb_ecom_project.model.user.Users;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.*;
-import org.hibernate.validator.constraints.URL;
 
 
 @Entity
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
+@Table(name="product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) // auto generated id values
@@ -31,4 +33,8 @@ public class Product {
     @JoinColumn(name = "category_id") // creates a foreign key 'category_id' in the 'product' table
     //That column will store the Category’s ID, linking products to categories.
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name="seller_id") // this will be mapped to the foreign key of the user table
+    private Users user;
 }

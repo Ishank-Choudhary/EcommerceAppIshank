@@ -1,16 +1,15 @@
-package com.ecommerce.sb_ecom_project.service;
+package com.ecommerce.sb_ecom_project.service.product.impl;
 
 import com.ecommerce.sb_ecom_project.exception.APIException;
 import com.ecommerce.sb_ecom_project.exception.ProductAlreadyExistsException;
 import com.ecommerce.sb_ecom_project.exception.ResourceNotFoundException;
-import com.ecommerce.sb_ecom_project.model.Category;
-import com.ecommerce.sb_ecom_project.model.Product;
-import com.ecommerce.sb_ecom_project.payload.CategoryDTO;
-import com.ecommerce.sb_ecom_project.payload.ProductDTO;
-import com.ecommerce.sb_ecom_project.payload.ProductResponse;
-import com.ecommerce.sb_ecom_project.repository.CategoryRepository;
-import com.ecommerce.sb_ecom_project.repository.ProductRepository;
-import org.apache.coyote.Response;
+import com.ecommerce.sb_ecom_project.model.category.entity.Category;
+import com.ecommerce.sb_ecom_project.model.product.entity.Product;
+import com.ecommerce.sb_ecom_project.model.product.payload.dto.ProductDTO;
+import com.ecommerce.sb_ecom_project.model.product.payload.response.ProductResponse;
+import com.ecommerce.sb_ecom_project.repository.categoryRepository.CategoryRepository;
+import com.ecommerce.sb_ecom_project.repository.productRepository.ProductRepository;
+import com.ecommerce.sb_ecom_project.service.product.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,19 +17,17 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 //for logging
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;

@@ -1,14 +1,11 @@
-package com.ecommerce.sb_ecom_project.controller;
+package com.ecommerce.sb_ecom_project.controller.productController;
 
 import com.ecommerce.sb_ecom_project.config.AppConstant;
-import com.ecommerce.sb_ecom_project.model.Product;
-import com.ecommerce.sb_ecom_project.payload.ProductDTO;
-import com.ecommerce.sb_ecom_project.payload.ProductResponse;
-import com.ecommerce.sb_ecom_project.service.ProductService;
+import com.ecommerce.sb_ecom_project.model.product.payload.dto.ProductDTO;
+import com.ecommerce.sb_ecom_project.model.product.payload.response.ProductResponse;
+import com.ecommerce.sb_ecom_project.service.product.service.ProductService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

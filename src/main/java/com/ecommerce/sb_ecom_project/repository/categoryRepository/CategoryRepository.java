@@ -1,7 +1,7 @@
-package com.ecommerce.sb_ecom_project.repository;
+package com.ecommerce.sb_ecom_project.repository.categoryRepository;
 
 
-import com.ecommerce.sb_ecom_project.model.Category;
+import com.ecommerce.sb_ecom_project.model.category.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

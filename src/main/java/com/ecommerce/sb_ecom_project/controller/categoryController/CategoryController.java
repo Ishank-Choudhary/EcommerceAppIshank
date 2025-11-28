@@ -1,17 +1,14 @@
-package com.ecommerce.sb_ecom_project.controller;
+package com.ecommerce.sb_ecom_project.controller.categoryController;
 
 import com.ecommerce.sb_ecom_project.config.AppConstant;
-import com.ecommerce.sb_ecom_project.payload.CategoryDTO;
-import com.ecommerce.sb_ecom_project.payload.CategoryResponse;
-import com.ecommerce.sb_ecom_project.service.CategoryService;
+import com.ecommerce.sb_ecom_project.model.category.payload.dto.CategoryDTO;
+import com.ecommerce.sb_ecom_project.model.category.payload.response.CategoryResponse;
+import com.ecommerce.sb_ecom_project.service.category.service.CategoryService;
 import jakarta.validation.Valid;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @RestController // tells springboot that this class handles HTTP requests
 @RequestMapping("/api/")

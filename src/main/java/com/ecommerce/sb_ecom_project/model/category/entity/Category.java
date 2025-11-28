@@ -1,10 +1,10 @@
-package com.ecommerce.sb_ecom_project.model;
+package com.ecommerce.sb_ecom_project.model.category.entity;
 
+import com.ecommerce.sb_ecom_project.model.product.entity.Product;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
