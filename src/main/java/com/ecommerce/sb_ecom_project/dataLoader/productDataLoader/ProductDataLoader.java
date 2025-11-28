@@ -1,4 +1,4 @@
-package com.ecommerce.sb_ecom_project.dataLoader.productLoader;
+package com.ecommerce.sb_ecom_project.dataLoader.productDataLoader;
 
 import com.ecommerce.sb_ecom_project.model.category.entity.Category;
 import com.ecommerce.sb_ecom_project.model.product.entity.Product;
